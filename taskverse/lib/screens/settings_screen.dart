@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import '../l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class SettingsScreen extends StatefulWidget {
   final Function(Locale) onLanguageChanged;
@@ -21,6 +23,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void initState() {
     super.initState();
     _loadAppVersion();
+    _loadSavedSettings();
+  }
+
+
+  
+  Future<void> _loadSavedSettings() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      String? theme = prefs.getString('themeMode');
+      String? languageCode = prefs.getString('languageCode');
+
+      _themeMode = _stringToThemeMode(theme ?? 'system');
+      _selectedLocale = Locale(languageCode ?? 'en');
+    });
   }
 
   Future<void> _loadAppVersion() async {
@@ -30,19 +47,36 @@ class _SettingsScreenState extends State<SettingsScreen> {
     });
   }
 
-  void _changeTheme(ThemeMode mode) {
+  void _changeTheme(ThemeMode mode) async {
     setState(() {
       _themeMode = mode;
     });
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('themeMode', _themeMode.toString().split('.').last);
     widget.onThemeChanged(mode);
   }
 
-  void _changeLanguage(Locale locale) {
+  void _changeLanguage(Locale locale) async {
     setState(() {
       _selectedLocale = locale;
     });
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('languageCode', locale.languageCode);
     widget.onLanguageChanged(locale);
   }
+
+  ThemeMode _stringToThemeMode(String mode) {
+    switch (mode) {
+      case 'light':
+        return ThemeMode.light;
+      case 'dark':
+        return ThemeMode.dark;
+      case 'system':
+      default:
+        return ThemeMode.system;
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {

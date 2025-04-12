@@ -516,7 +516,6 @@
 // }
 import 'package:flutter/material.dart';
 import '../models/task_model.dart';
-import '../services/alarm_service.dart'; // ✅ Replaced NotificationService with AlarmService
 
 class AddTaskScreen extends StatefulWidget {
   final Function(Task) onTaskAdded;
@@ -704,15 +703,15 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         
         // Save alarm ID to the task
         newTask.addAlarmId(alarmId);
-        
-        // Set the alarm
-        AlarmService.setAlarm(
-          id: alarmId,
-          alarmTime: reminder,
-          title: 'Task Reminder: ${_titleController.text}',
-          body: 'Due in ${_getTimeUntilDue(fullDueDateTime, reminder)}',
-          payload: taskPayload,
-        );
+        //*********************************************IIIIIIIIIIIIIIIIIIIIII Haveeeeeeeeeeeeeeeee Tooooooooooooooooooooooooooooooooooooooooooo Addddddddddddddddddddddddddddddddddddddddddddddddddd*/
+        // // Set the alarm
+        // AlarmService.setAlarm(
+        //   id: alarmId,
+        //   alarmTime: reminder,
+        //   title: 'Task Reminder: ${_titleController.text}',
+        //   body: 'Due in ${_getTimeUntilDue(fullDueDateTime, reminder)}',
+        //   payload: taskPayload,
+        // );
       }
     }
 
@@ -724,14 +723,14 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         // Save alarm ID to the task
         newTask.addAlarmId(alarmId);
         
-        // Set the alarm
-        AlarmService.setAlarm(
-          id: alarmId,
-          alarmTime: reminder,
-          title: 'Task Reminder: ${_titleController.text}',
-          body: 'Custom reminder for your task',
-          payload: taskPayload,
-        );
+        // // Set the alarm
+        // AlarmService.setAlarm(
+        //   id: alarmId,
+        //   alarmTime: reminder,
+        //   title: 'Task Reminder: ${_titleController.text}',
+        //   body: 'Custom reminder for your task',
+        //   payload: taskPayload,
+        // );
       }
     }
 

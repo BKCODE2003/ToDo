@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "439022484018",
-    "project_id": "taskverse-e20aa",
-    "storage_bucket": "taskverse-e20aa.firebasestorage.app"
+    "project_number": "1008616728963",
+    "project_id": "taskverse-43d3e",
+    "storage_bucket": "taskverse-43d3e.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:439022484018:android:4eeddae0376941ebdbda2b",
+        "mobilesdk_app_id": "1:1008616728963:android:21d24eb91c6105c1936eb6",
         "android_client_info": {
           "package_name": "com.example.taskverse"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBABmvHdsBZ89LDsLacp3pTS-l1bTF3msM"
+          "current_key": "AIzaSyB8Zan57q52oFtm12xTyB89kvPQ-BGher8"
         }
       ],
       "services": {
