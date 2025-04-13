@@ -48,13 +48,16 @@ class Task {
         dueDateTime.day == now.day;
   }
 
-  /// **Check if Task is Planned for This Week**
-  bool isPlannedForThisWeek() {
-    DateTime now = DateTime.now();
-    DateTime startOfWeek = DateTime(now.year, now.month, now.day - now.weekday + 1);
-    DateTime endOfWeek = startOfWeek.add(const Duration(days: 6, hours: 23, minutes: 59, seconds: 59));
-    return dueDateTime.isAfter(startOfWeek) && dueDateTime.isBefore(endOfWeek);
-  }
+/// **Check if Task is Planned for This Week**
+bool isPlannedForThisWeek() {
+  DateTime now = DateTime.now();
+  // Start of week (Monday, 00:00:00)
+  DateTime startOfWeek = DateTime(now.year, now.month, now.day - (now.weekday - 1));
+  // End of week (Sunday, 23:59:59)
+  DateTime endOfWeek = startOfWeek.add(const Duration(days: 6, hours: 23, minutes: 59, seconds: 59));
+  // Include tasks on or after startOfWeek and on or before endOfWeek
+  return !dueDateTime.isBefore(startOfWeek) && !dueDateTime.isAfter(endOfWeek);
+}
 
   /// **Convert Task to Map (For Storage)**
   Map<String, dynamic> toMap() {
@@ -107,4 +110,4 @@ class Task {
 
 
 /// **Global Task List (Temporary Storage)**
-List<Task> tasks = [];
+// List<Task> tasks = [];

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/task_model.dart';
 import 'package:intl/intl.dart';
+import '../services/firestore_service.dart';
 
 class TaskDetailScreen extends StatefulWidget {
   final Task task;
@@ -19,6 +20,8 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
   TimeOfDay? _dueTime;
   Duration _targetedTime = const Duration(hours: 0, minutes: 30);
   bool _isImportant = false;
+  final FirestoreService _firestoreService = FirestoreService(); // Add Firestore service
+
 
   @override
   void initState() {
@@ -42,9 +45,11 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
       widget.task.isImportant = _isImportant;
     });
 
+    _firestoreService.updateTask(widget.task); // Update in Firestore
     widget.onTaskUpdated(); // 🔥 **Update UI in all screens**
     Navigator.pop(context);
   }
+
 
   Future<void> _selectDueDate() async {
     DateTime? pickedDate = await showDatePicker(

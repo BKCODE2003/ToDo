@@ -516,6 +516,7 @@
 // }
 import 'package:flutter/material.dart';
 import '../models/task_model.dart';
+import '../services/firestore_service.dart';
 
 class AddTaskScreen extends StatefulWidget {
   final Function(Task) onTaskAdded;
@@ -529,6 +530,9 @@ class AddTaskScreen extends StatefulWidget {
 class _AddTaskScreenState extends State<AddTaskScreen> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
+  final FirestoreService _firestoreService = FirestoreService(); // Add Firestore service
+  bool _isSaving = false; // Prevent duplicate saves
+
 
   DateTime? _dueDate;
   TimeOfDay? _dueTime;
@@ -735,9 +739,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     }
 
     // Add the task to the list
-    widget.onTaskAdded(newTask);
+    // widget.onTaskAdded(newTask);
+    _firestoreService.saveTask(newTask); // Save to Firestore
+    widget.onTaskAdded(newTask); // Keep callback for compatibility
     Navigator.pop(context);
   }
+
 
   // Helper method to format the time until due
   String _getTimeUntilDue(DateTime dueDate, DateTime reminderTime) {
