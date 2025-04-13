@@ -40,4 +40,21 @@ class FirestoreService {
     return _getTasksCollection().snapshots().map((snapshot) =>
         snapshot.docs.map((doc) => Task.fromMap(doc.data() as Map<String, dynamic>)).toList());
   }
+
+  // Fetch user UID by email
+  Future<String?> getUserUidByEmail(String email) async {
+    try {
+      final snapshot = await _db
+          .collection('users')
+          .where('email', isEqualTo: email.trim())
+          .limit(1)
+          .get();
+      if (snapshot.docs.isNotEmpty) {
+        return snapshot.docs.first.id;
+      }
+      return null;
+    } catch (e) {
+      return null;
+    }
+  }
 }

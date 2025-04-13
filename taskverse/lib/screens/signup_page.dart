@@ -77,7 +77,7 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color.fromARGB(255, 19, 28, 38),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -86,7 +86,7 @@ class _SignupPageState extends State<SignupPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 60),
-                const Text("Create Account", style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold)),
+                const Text("Create Account", style: TextStyle(color: Color.fromARGB(255, 250, 241, 226), fontSize: 32, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 30),
                 Form(
                   key: _formKey,

@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+      backgroundColor: const Color.fromARGB(255, 19, 28, 38),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 60),
-              const Text("Welcome, Innovative Spirit", style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 32, fontWeight: FontWeight.bold)),
+              const Text("Welcome, Innovative Spirit", style: TextStyle(color: Color.fromARGB(255, 250, 241, 226), fontSize: 32, fontWeight: FontWeight.bold)),
               const SizedBox(height: 30),
               Form(
                 key: _formKey,
